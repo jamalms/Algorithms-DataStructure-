@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script src="demo.js"></script>
+    <div class="kodfun-galery">
+       
+        <div style="background-image: url('nightgalaxy.jpg');"></div>
+        <div style="background-image: url('nightgalaxy.jpg');"></div>
+        <div style="background-image: url('nightgalaxy.jpg');"></div>
+        <div style="background-image: url('nightgalaxy.jpg');"></div>
+        <div style="background-image: url('nightgalaxy.jpg');"></div>
+    </div>
+    <style>
+        body {
+            background-color: chocolate;
+        }
+        .kodfun-galery {
+            display: flex;
+            height: 20rem;
+            gap: 1rem;
+        }
+        .kodfun-galery > div {
+            flex: 1;
+            border-radius: 1rem;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: auto 100%;
+            transition: all .8s cubic-bezier(.25, .4, .45, 1.4);
+        }
+        .kodfun-galery > div:hover {
+            flex: 5;
+        }
+    </style>
+</body>
+</html>

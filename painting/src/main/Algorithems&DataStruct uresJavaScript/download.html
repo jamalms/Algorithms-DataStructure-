@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Binary Search</title>
+    <style>
+      body {
+        background-color: #032a05;
+        color: rgb(207, 56, 56);
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+      }
+      main {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        box-sizing: border-box;
+      }
+      h1 {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+      label {
+        display: block;
+        margin-bottom: 10px;
+      }
+      input[type="text"], input[type="number"] {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        border: 1px solid rgb(67, 177, 112);
+        border-radius: 40px;
+        box-sizing: border-box;
+        margin-bottom: 20px;
+      }
+      button {
+        background-color: #b83a00;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 40px;
+        cursor: pointer;
+      }
+      button:hover {
+        background-color: #3e8e41;
+      }
+      .result {
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Binary Search</h1>
+      <form>
+        <label for="inputNumbers">Enter the numbers separated by spaces:</label>
+        <input type="text" id="inputNumbers" name="inputNumbers">
+        <label for="inputTarget">Enter the target:</label>
+        <input style="width: 80px; align-content: center;" type="number" id="inputTarget" name="inputTarget">
+        <button type="button" onclick="runBinarySearch()">Search</button>
+        <button type="button" onclick="downloadFile()">Download File</button>
+      </form>
+      <div class="result" id="result"></div>
+    </main>
+    <script>
+      function binarySearch(arr, target) {
+        let left = 0;
+        let right = arr.length - 1;
+
+        while (left <= right) {
+          let mid = Math.floor((left + right) / 2);
+
+          if (arr[mid] === target) {
+            return mid;
+          } else if (arr[mid] < target) {
+            left = mid + 1;
+          } else {
+            right = mid - 1;
+          }
+        }
+
+        return -1;
+      }
+
+      function runBinarySearch() {
+        const inputNumbers = document.getElementById("inputNumbers").value;
+        const inputTarget = parseInt(document.getElementById("inputTarget").value);
+
+        const arr = inputNumbers.split(" ").map(Number);
+        const result = binarySearch(arr, inputTarget);
+
+        const resultElement = document.getElementById("result");
+        if (result === -1) {
+          resultElement.innerHTML = `The Target of ${inputTarget} NOT FOUND`;
+        } else {
+          resultElement.innerHTML = `The Target of ${inputTarget} exists in Index: ${result}`;
+        }
+      }
+
+      function downloadFile() {
+        const inputNumbers = document.getElementById("inputNumbers").value;
+        const arr = inputNumbers.split(" ").map(Number);
+        const filename = "numbers.txt";
+        const blob = new Blob([arr.join("\n")], { type: "text/plain" });
+  const url = URL.createObjectURL(blob);
+
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = filename;
+  a.click();
+
+  URL.revokeObjectURL(url);
+}

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	
+		<title> CSS Grids </title>
+	
+		<style>
+			body {
+				font-family: Arial, Helvetica, sans-serif;
+			}
+			.card-title {
+				margin-bottom: 20px;
+			}
+
+			.quadrants div {
+				display: flex;
+				flex-direction: row;
+				justify-content: center;
+				align-items: center;
+
+				@media only screen and (max-width: 420px) {
+				flex-direction: column;
+			}
+			}
+
+			.quadrants {
+				background-color: blue;
+				color: white;
+				width: 150px;
+				height: 100px;
+			}
+			.solution {
+				background-color: aqua;
+			}
+
+			.shortes {
+				background-color: chocolate;
+			}
+
+			.first {
+				background-color: aquamarine;
+			}
+
+			.authored {
+				background-color: darkslategrey;
+			}
+			
+			
+		</style>
+		
+	</head>
+	<body>
+
+		
+
+	<div class="challenges card">
+		<h3 class="card-title">Challenges</h3>
+		<div class="quadrants">
+			<div class="quadrants-upper">
+				<div class="quadrants solution">
+					<span class="quadrants-title">Solution</span>
+					<span class="quadrants-number">67</span>
+				</div>
+				<div class="quadrants shortes">
+					<span class="quadrants-title">Shortest</span>
+					<span class="quadrants-number">0</span>
+				</div>
+			</div>
+
+			<div class="quadrants-lower">
+				<div class="quadrants first">
+					<span class="quadrants-title">First</span>
+					<span class="quadrants-number"></span>
+				</div>
+				<div class="quadrants authored">
+					<span class="quadrants-title">Created</span>
+					<span class="quadrants-number">12</span>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	</body>
+</html>

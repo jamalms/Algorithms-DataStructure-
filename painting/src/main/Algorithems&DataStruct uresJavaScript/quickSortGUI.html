@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Employee Sorting</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <style>
+        table {
+	border-collapse: collapse;
+	margin: 20px;
+}
+
+th, td {
+	padding: 10px;
+	border: 1px solid black;
+}
+
+th {
+	background-color: #f2f2f2;
+}
+
+h1 {
+	text-align: center;
+}
+
+tbody tr:nth-child(odd) {
+	background-color: #f2f2f2;
+}
+
+    </style>
+	<h1>Employee Sorting</h1>
+	<table>
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>Name</th>
+				<th>Birth Date</th>
+			</tr>
+		</thead>
+		<tbody id="employeeTableBody">
+			<!-- The sorted table rows will be inserted here -->
+		</tbody>
+	</table>
+	<!-- <script src="script.js"></script> -->
+    <script>
+        // Declare a function named 'quickSort' which takes an array of 'Employee' objects as an argument.
+function quickSort(arr) {
+  // Base case: if the length of the array is less than or equal to 1, return the array.
+  if (arr.length <= 1) {
+    return arr;
+  }
+
+  // Choose the first element of the array as the pivot.
+  let pivot = arr[0];
+
+  // Declare two empty arrays to hold the elements less than and greater than the pivot.
+  let leftArr = [];
+  let rightArr = [];
+
+  // Iterate over the array starting from the second element.
+  for (let i = 1; i < arr.length; i++) {
+    // If the current element is less than the pivot, add it to 'leftArr'.
+    if (arr[i].getBirthDate() < pivot.getBirthDate()) {
+      leftArr.push(arr[i]);
+    } else {
+      // If the current element is greater than or equal to the pivot, add it to 'rightArr'.
+      rightArr.push(arr[i]);
+    }
+  }
+
+  // Recursively call 'quickSort' on 'leftArr' and 'rightArr',
+  // and concatenate the sorted arrays with the pivot element.
+
+  // Sort the left array recursively
+  let sortedLeftArr = quickSort(leftArr);
+
+  // Sort the right array recursively
+  let sortedRightArr = quickSort(rightArr);
+
+  // Create a new array 'sortedArr' with the same length as the original array
+  let sortedArr = [];
+
+  // Copy the sorted elements from the left array into 'sortedArr'
+  sortedArr = sortedArr.concat(sortedLeftArr);
+
+  // Insert the pivot element into the 'sortedArr'
+  sortedArr.push(pivot);
+
+  // Copy the sorted elements from the right array into 'sortedArr'
+  sortedArr = sortedArr.concat(sortedRightArr);
+
+  // Return the fully sorted array
+  return sortedArr;
+}
+
+// Define a class 'Employee' with properties 'id', 'name', and 'birthDate'.
+class Employee {
+  constructor(id, name, birthDate) {
+    this.id = id;
+    this.name = name;
+    this.birthDate = birthDate;
+  }
+
+  getId() {
+    return this.id;
+  }
+
+  getName() {
+    return this.name;
+  }
+
+  getBirthDate() {
+    return this.birthDate;
+  }
+
+  toString() {
+    return "ID: " + this.id + ", Name: " + this.name + ", Birth Date: " + this.birthDate;
+  }
+}
+
+// Define an array of 'Employee' objects.
+let emp1 = new Employee(1, "Cohn", new Date(1980, 2, 10));
+let emp2 = new Employee(3, "Alex", new Date(1975, 3, 12));
+let emp3 = new Employee(2, "Emily", new Date(1990, 0, 14));
+
+// Create an array of Employee objects
+let employees = [emp1, emp2, emp3, emp4, emp5];
+
+// Call the quickSort function with the employees array as an argument
+let sortedEmployees = quickSort(employees);
+
+// Print the sorted array to the console
+console.log(sortedEmployees);
+
+    </script>
+</body>
+</html>
